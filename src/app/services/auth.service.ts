@@ -3,6 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
 import { BehaviorSubject } from 'rxjs';
+import { environment } from '../../environments/environment.prod';
 
 @Injectable({
   providedIn: 'root'
@@ -10,7 +11,7 @@ import { BehaviorSubject } from 'rxjs';
 
 export class AuthService {
 
-  private apiUrl = 'http://localhost:8300/api/users';
+  private apiUrl = `${environment.apiUrl}/api/users`;
   private loggedInSubject = new BehaviorSubject<boolean>(false);
   isLoggedIn$: Observable<boolean> = this.loggedInSubject.asObservable();
 
