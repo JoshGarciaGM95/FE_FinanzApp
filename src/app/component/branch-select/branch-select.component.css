@@ -1,0 +1,6 @@
+.branch-select-container {
+  padding: 24px;
+}
+mat-list-item {
+  cursor: pointer;
+}

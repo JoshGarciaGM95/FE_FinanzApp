@@ -1,0 +1,5 @@
+
+router-outlet {
+  flex: 1;
+  overflow: auto;
+}

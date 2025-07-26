@@ -1,0 +1,31 @@
+<div class="container py-5">
+  <div class="row justify-content-center align-items-center">
+    <div class="col-md-6 d-none d-md-block">
+      <img src="https://th.bing.com/th/id/OIP.ygUHmEQK01k19UPGX5_G4gHaE8?rs=1&pid=ImgDetMain" alt="Login Image" class="img-fluid rounded shadow">
+    </div>
+    <div class="col-md-6">
+      <div class="card shadow">
+        <div class="card-body">
+          <h3 class="mb-4 text-center">Iniciar Sesión</h3>
+          <form (ngSubmit)="onSubmit()">
+            <div class="mb-3">
+              <label for="email" class="form-label">Email</label>
+              <input type="email" class="form-control" id="email" [formControl]="emailFormControl" placeholder="Ex. pat@example.com" [(ngModel)]="loginData.email" name="email">
+              <div *ngIf="emailFormControl.hasError('email') && !emailFormControl.hasError('required')" class="text-danger small">Por favor ingresa un email válido</div>
+              <div *ngIf="emailFormControl.hasError('required')" class="text-danger small">El email es <strong>requerido</strong></div>
+            </div>
+            <div class="mb-3">
+              <label for="password" class="form-label">Contraseña</label>
+              <input type="password" class="form-control" id="password" [formControl]="passwordFormControl" placeholder="Ex. myPassword123" [(ngModel)]="loginData.password" name="password">
+            </div>
+            <div class="d-flex justify-content-between">
+              <button class="btn btn-primary" type="submit">Login</button>
+              <button class="btn btn-secondary" type="button" (click)="redirectToRegister()">Registrarse</button>
+            </div>
+          </form>
+          <app-branch-select *ngIf="showBranchSelect" [branches]="branches" (branchSelected)="onBranchSelected($event)"></app-branch-select>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

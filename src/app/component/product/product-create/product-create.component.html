@@ -1,0 +1,54 @@
+<div class="container my-4">
+  <h2>Agregar Producto</h2>
+  <form (ngSubmit)="onSubmit()" #productForm="ngForm" class="row g-3">
+    <div *ngIf="isLoading" class="mb-3">
+      <div class="progress">
+        <div class="progress-bar progress-bar-striped progress-bar-animated" style="width: 100%"></div>
+      </div>
+    </div>
+    <div class="col-md-6">
+      <label for="category_id" class="form-label">Categoría</label>
+      <select id="category_id" class="form-select" name="category_id" [(ngModel)]="product.category_id" required>
+        <option value="" disabled selected>Seleccione una categoría</option>
+        <option *ngFor="let cat of categories" [value]="cat.category_id">{{ cat.category_name }}</option>
+      </select>
+    </div>
+    <div class="col-md-6">
+      <label for="product_code" class="form-label">Código</label>
+      <input id="product_code" type="text" class="form-control" name="product_code" [(ngModel)]="product.product_code" required placeholder="Código del producto" title="Código del producto" aria-label="Código del producto">
+    </div>
+    <div class="col-md-6">
+      <label for="product_name" class="form-label">Nombre</label>
+      <input id="product_name" type="text" class="form-control" name="product_name" [(ngModel)]="product.product_name" required placeholder="Nombre del producto" title="Nombre del producto" aria-label="Nombre del producto">
+    </div>
+    <div class="col-md-6">
+      <label for="description" class="form-label">Descripción</label>
+      <input id="description" type="text" class="form-control" name="description" [(ngModel)]="product.description" required placeholder="Descripción" title="Descripción" aria-label="Descripción">
+    </div>
+    <div class="col-md-6">
+      <label for="cost_price" class="form-label">Precio Costo</label>
+      <input id="cost_price" type="number" class="form-control" name="cost_price" [(ngModel)]="product.cost_price" required placeholder="Precio de costo" title="Precio de costo" aria-label="Precio de costo">
+    </div>
+    <div class="col-md-6">
+      <label for="sale_price" class="form-label">Precio Venta</label>
+      <input id="sale_price" type="number" class="form-control" name="sale_price" [(ngModel)]="product.sale_price" required placeholder="Precio de venta" title="Precio de venta" aria-label="Precio de venta">
+    </div>
+    <div class="col-md-6">
+      <label for="status" class="form-label">Estado</label>
+      <select id="status" class="form-select" name="status" [(ngModel)]="product.status" required>
+        <option value="Active">Activo</option>
+        <option value="Inactive">Inactivo</option>
+      </select>
+    </div>
+    <div class="col-md-6">
+      <label for="creation_date" class="form-label">Fecha de creación</label>
+      <input id="creation_date" type="date" class="form-control" name="creation_date" [(ngModel)]="product.creation_date" placeholder="Fecha de creación" title="Fecha de creación" aria-label="Fecha de creación">
+    </div>
+    <div class="col-12">
+      <button class="btn btn-primary" type="submit" [disabled]="isLoading">Guardar</button>
+      <a class="btn btn-secondary" type="button" routerLink="/home/products" [class.disabled]="isLoading">Cancelar</a>
+    </div>
+    <div *ngIf="successMessage" class="alert alert-success mt-3">{{successMessage}}</div>
+    <div *ngIf="errorMessage" class="alert alert-danger mt-3">{{errorMessage}}</div>
+  </form>
+</div>

@@ -1,0 +1,22 @@
+
+<div class="container my-4">
+  <h2>Agregar Inventario</h2>
+  <form (ngSubmit)="onSubmit()" #inventoryForm="ngForm" class="row g-3">
+    <div class="col-md-6">
+      <label for="product_id" class="form-label">Producto</label>
+      <select id="product_id" class="form-select" name="product_id" [(ngModel)]="inventory.product_id" required>
+        <option *ngFor="let prod of products" [value]="prod.product_id">{{prod.product_name}}</option>
+      </select>
+    </div>
+    <div class="col-md-6">
+      <label for="quantity" class="form-label">Cantidad</label>
+      <input id="quantity" type="number" class="form-control" name="quantity" [(ngModel)]="inventory.quantity" required min="1" placeholder="Cantidad" title="Cantidad" aria-label="Cantidad">
+    </div>
+    <div class="col-12">
+      <button class="btn btn-primary" type="submit">Guardar</button>
+      <a class="btn btn-secondary" type="button" routerLink="/home/inventory">Cancelar</a>
+    </div>
+    <div *ngIf="successMessage" class="alert alert-success mt-3">{{successMessage}}</div>
+    <div *ngIf="errorMessage" class="alert alert-danger mt-3">{{errorMessage}}</div>
+  </form>
+</div>

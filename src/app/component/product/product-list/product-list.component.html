@@ -1,0 +1,43 @@
+<div class="container my-4">
+  <div class="d-flex justify-content-between align-items-center mb-3">
+    <h2 class="mb-0">Productos</h2>
+    <a class="btn btn-primary" [routerLink]="['/home/products/create']">Agregar Producto</a>
+  </div>
+  <div *ngIf="products && products.length; else noProducts">
+    <div class="table-responsive">
+      <table class="table table-striped table-bordered align-middle">
+        <thead class="table-dark">
+          <tr>
+            <th>ID</th>
+            <th>Empresa</th>
+            <th>Categoría</th>
+            <th>Código</th>
+            <th>Nombre</th>
+            <th>Precio Costo</th>
+            <th>Precio Venta</th>
+            <th>Acciones</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let element of products">
+            <td>{{element.product_id}}</td>
+            <td>{{element.company_id}}</td>
+            <td>{{element.category_id | category | async}}</td>
+            <td>{{element.product_code}}</td>
+            <td>{{element.product_name}}</td>
+            <td>{{element.cost_price}}</td>
+            <td>{{element.sale_price}}</td>
+            <td>
+              <a class="btn btn-sm btn-info me-1" [routerLink]="['/home/products', element.product_id]">Ver</a>
+              <a class="btn btn-sm btn-warning me-1" [routerLink]="['/home/products', element.product_id, 'edit']">Editar</a>
+              <button class="btn btn-sm btn-danger" (click)="deleteProduct(element.product_id)">Eliminar</button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+  <ng-template #noProducts>
+    <div class="alert alert-info">No hay productos registrados.</div>
+  </ng-template>
+</div>

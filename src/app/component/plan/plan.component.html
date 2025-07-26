@@ -1,0 +1,30 @@
+<div class="container py-4">
+  <div class="row g-4">
+    <div class="col-md-3" *ngFor="let plan of plans">
+      <div class="card h-100 shadow">
+        <div class="card-header bg-primary text-white">
+          <h5 class="card-title mb-0">{{plan.plan_name}}</h5>
+          <small>Máximo de Sucursales: {{plan.max_branches}}</small>
+        </div>
+        <div class="card-body">
+          <div *ngFor="let category of convertToObject(plan.features) | keyvalue">
+            <h6>{{category.key}}</h6>
+            <ul class="mb-2">
+              <li *ngFor="let item of category.value">
+                <i class="{{item.icon}}"></i>
+                <span>{{item.name}}: {{item.description}}</span>
+              </li>
+            </ul>
+          </div>
+          <hr>
+          <p>Máximo de usuarios: {{plan.max_users}}</p>
+          <p>Precio por Mes: <strong>{{plan.price_monthly}}</strong></p>
+          <p>Precio por Año: <strong>{{plan.price_yearly}}</strong></p>
+        </div>
+        <div class="card-footer bg-light">
+          <button class="btn btn-success w-100" (click)="selectPlan(plan)">Seleccionar este plan</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

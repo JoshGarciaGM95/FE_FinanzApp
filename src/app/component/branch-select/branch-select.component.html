@@ -1,0 +1,8 @@
+<div class="container my-4">
+  <h2>Selecciona una sucursal</h2>
+  <ul class="list-group">
+    <li class="list-group-item list-group-item-action" *ngFor="let branch of branches" (click)="selectBranch(branch)" style="cursor:pointer">
+      {{branch.branch_name}} - {{branch.address}}
+    </li>
+  </ul>
+</div>

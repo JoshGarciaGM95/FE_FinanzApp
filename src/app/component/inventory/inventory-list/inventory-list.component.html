@@ -1,0 +1,39 @@
+<div class="container my-4">
+  <div class="d-flex justify-content-between align-items-center mb-3">
+    <h2 class="mb-0">Inventario</h2>
+    <a class="btn btn-primary" [routerLink]="['/home/inventory/create']">Agregar Inventario</a>
+  </div>
+  <div *ngIf="inventories && inventories.length; else noInventories">
+    <div class="table-responsive">
+      <table class="table table-striped table-bordered align-middle">
+        <thead class="table-dark">
+          <tr>
+            <th>ID</th>
+            <th>Empresa</th>
+            <th>Sucursal</th>
+            <th>Producto</th>
+            <th>Cantidad</th>
+            <th>Acciones</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let element of inventories">
+            <td>{{element.inventory_id}}</td>
+            <td>{{element.company_id}}</td>
+            <td>{{element.branch_id}}</td>
+            <td>{{element.product_id | productName | async }}</td>
+            <td>{{element.quantity}}</td>
+            <td>
+              <a class="btn btn-sm btn-info me-1" [routerLink]="['/home/inventory', element.inventory_id]">Ver</a>
+              <a class="btn btn-sm btn-warning me-1" [routerLink]="['/home/inventory', element.inventory_id, 'edit']">Editar</a>
+              <button class="btn btn-sm btn-danger" (click)="deleteInventory(element.inventory_id)">Eliminar</button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+  <ng-template #noInventories>
+    <div class="alert alert-info">No hay inventario registrado.</div>
+  </ng-template>
+</div>

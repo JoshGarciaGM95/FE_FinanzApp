@@ -1,0 +1,22 @@
+<div class="container my-4" *ngIf="product">
+  <h2>Detalle de Producto</h2>
+  <div class="card shadow">
+    <div class="card-body">
+      <p><strong>ID:</strong> {{product.product_id}}</p>
+      <p><strong>Empresa:</strong> {{product.company_id}}</p>
+      <p><strong>Categoría:</strong> {{product.category_id}}</p>
+      <p><strong>Código:</strong> {{product.product_code}}</p>
+      <p><strong>Nombre:</strong> {{product.product_name}}</p>
+      <p><strong>Descripción:</strong> {{product.description}}</p>
+      <p><strong>Precio Costo:</strong> {{product.cost_price}}</p>
+      <p><strong>Precio Venta:</strong> {{product.sale_price}}</p>
+      <p><strong>Estado:</strong> {{product.status}}</p>
+      <p><strong>Fecha de creación:</strong> {{product.creation_date}}</p>
+    </div>
+    <div class="card-footer d-flex gap-2">
+      <a class="btn btn-primary" [routerLink]="['/home/products', product.product_id, 'edit']">Editar</a>
+      <button class="btn btn-danger" (click)="deleteProduct(product.product_id)">Eliminar</button>
+      <a class="btn btn-secondary" routerLink="/home/products">Volver</a>
+    </div>
+  </div>
+</div>

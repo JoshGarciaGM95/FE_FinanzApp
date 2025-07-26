@@ -1,0 +1,18 @@
+<div class="container my-4" *ngIf="inventory">
+  <h2>Detalle de Inventario</h2>
+  <div class="card shadow">
+    <div class="card-body">
+      <p><strong>ID:</strong> {{inventory.inventory_id}}</p>
+      <p><strong>Empresa:</strong> {{inventory.company_id}}</p>
+      <p><strong>Sucursal:</strong> {{inventory.branch_id}}</p>
+      <p><strong>Producto:</strong> {{inventory.product_id}}</p>
+      <p><strong>Cantidad:</strong> {{inventory.quantity}}</p>
+      <p><strong>Última actualización:</strong> {{inventory.last_updated | date:'short'}}</p>
+    </div>
+    <div class="card-footer d-flex gap-2">
+      <a class="btn btn-primary" [routerLink]="['/home/inventory', inventory.inventory_id, 'edit']">Editar</a>
+      <button class="btn btn-danger" (click)="deleteInventory(inventory.inventory_id)">Eliminar</button>
+      <a class="btn btn-secondary" routerLink="/home/inventory">Volver</a>
+    </div>
+  </div>
+</div>

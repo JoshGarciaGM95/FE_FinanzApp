@@ -1,0 +1,24 @@
+<div class="container my-4">
+  <h2>Crear Sucursal</h2>
+  <form (ngSubmit)="onSubmit()" #branchForm="ngForm" class="row g-3">
+    <div class="col-md-6">
+      <label for="branchName" class="form-label">Nombre de la sucursal</label>
+      <input id="branchName" type="text" class="form-control" name="branch_name" [(ngModel)]="branch.branch_name" required>
+    </div>
+    <div class="col-md-6">
+      <label for="address" class="form-label">Dirección</label>
+      <input id="address" type="text" class="form-control" name="address" [(ngModel)]="branch.address" required>
+    </div>
+    <div class="col-md-6">
+      <label for="phone" class="form-label">Teléfono</label>
+      <input id="phone" type="text" class="form-control" name="phone" [(ngModel)]="branch.phone" required placeholder="Teléfono de la sucursal">
+    </div>
+    <div class="col-md-6">
+      <label for="status" class="form-label">Estado</label>
+      <input id="status" type="text" class="form-control" name="status" [(ngModel)]="branch.status" required placeholder="Estado de la sucursal">
+    </div>
+    <div class="col-12">
+      <button class="btn btn-primary" type="submit">Crear Sucursal</button>
+    </div>
+  </form>
+</div>

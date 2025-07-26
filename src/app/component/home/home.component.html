@@ -1,0 +1,33 @@
+
+<!-- Navbar Bootstrap -->
+<nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+  <div class="container-fluid">
+    <span class="navbar-brand">Bienvenido {{username}} / {{companyName}}</span>
+    <div class="d-flex ms-auto">
+      <button class="btn btn-outline-light" *ngIf="isLoggedIn$ | async" (click)="Logout()">
+        <i class="bi bi-box-arrow-right"></i> Cerrar sesión
+      </button>
+    </div>
+  </div>
+</nav>
+
+<div class="container-fluid">
+  <div class="row">
+    <!-- Sidebar -->
+    <nav class="col-md-2 d-none d-md-block bg-light sidebar py-3">
+      <div class="list-group">
+        <a routerLink="/home/products/list" routerLinkActive="active" class="list-group-item list-group-item-action">Producto</a>
+        <a routerLink="/home/inventory/list" routerLinkActive="active" class="list-group-item list-group-item-action">Inventario</a>
+        <a routerLink="/home/sales" routerLinkActive="active" class="list-group-item list-group-item-action">Ventas</a>
+        <a routerLink="/home/income" routerLinkActive="active" class="list-group-item list-group-item-action">Compras</a>
+        <a routerLink="/home/client" routerLinkActive="active" class="list-group-item list-group-item-action">Clientes</a>
+        <a routerLink="/home/provider" routerLinkActive="active" class="list-group-item list-group-item-action">Proveedores</a>
+      </div>
+    </nav>
+
+    <!-- Contenido principal -->
+    <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4 py-4">
+      <router-outlet></router-outlet>
+    </main>
+  </div>
+</div>
