@@ -14,4 +14,8 @@ export class BranchService {
   createBranch(data: any): Observable<any> {
     return this.http.post(`${this.apiUrl}/create`, data);
   }
+
+  getBranchesByCompany(companyId: number): Observable<any> {
+    return this.http.get(`${this.apiUrl}/byCompany/${companyId}`);
+  }
 }

@@ -2,11 +2,12 @@ import { Component } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
 import { BranchService } from '../../services/branch.service';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-branch-create',
   standalone: true,
-  imports: [FormsModule],
+  imports: [FormsModule, CommonModule],
   templateUrl: './branch-create.component.html',
   styleUrl: './branch-create.component.css'
 })
@@ -19,7 +20,26 @@ export class BranchCreateComponent {
     creation_date: ''
   };
 
-  constructor(private branchService: BranchService, private router: Router) {}
+  branches: any[] = [];
+
+  constructor(private branchService: BranchService, public router: Router) {
+    this.loadBranches();
+  }
+
+  loadBranches() {
+    const companyId = Number(sessionStorage.getItem('companyId'));
+    if (companyId) {
+      this.branchService.getBranchesByCompany(companyId).subscribe({
+        next: (res) => {
+          this.branches = res;
+        },
+        error: (err) => {
+          this.branches = [];
+
+        }
+      });
+    }
+  }
 
   onSubmit() {
     const companyId = Number(sessionStorage.getItem('companyId'));
@@ -34,7 +54,8 @@ export class BranchCreateComponent {
     };
     this.branchService.createBranch(branchData).subscribe({
       next: (res) => {
-        this.router.navigate(['/home']);
+        this.loadBranches();
+        this.branch = { branch_name: '', address: '', phone: '', status: 'active', creation_date: '' };
       },
       error: (err) => alert('Error al crear sucursal: ' + err.message)
     });

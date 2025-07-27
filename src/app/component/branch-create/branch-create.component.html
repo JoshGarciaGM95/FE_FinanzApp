@@ -18,7 +18,17 @@
       <input id="status" type="text" class="form-control" name="status" [(ngModel)]="branch.status" required placeholder="Estado de la sucursal">
     </div>
     <div class="col-12">
-      <button class="btn btn-primary" type="submit">Crear Sucursal</button>
+  <button class="btn btn-primary" type="submit">Crear Sucursal</button>
+  <button *ngIf="branches.length > 0" class="btn btn-outline-secondary ms-2" type="button" (click)="router.navigate(['/login'])">Ingresar ---></button>
     </div>
   </form>
+</div>
+
+<div class="container my-4">
+  <h3>Sucursales agregadas</h3>
+  <ul class="list-group">
+    <li class="list-group-item list-group-item-action" *ngFor="let branch of branches" style="cursor:pointer">
+      {{branch.branch_name}} - {{branch.address}} - {{branch.phone}} - {{branch.status}}
+    </li>
+  </ul>
 </div>

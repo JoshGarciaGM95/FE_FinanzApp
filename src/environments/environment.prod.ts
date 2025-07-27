@@ -1,4 +1,4 @@
 export const environment = {
   production: true,
-  apiUrl: 'https://be-finanzapp.onrender.com'
+  apiUrl: 'http://localhost:8300' // 'https://be-finanzapp.onrender.com'
 };

@@ -1,6 +1,6 @@
 import { Component, Input, Output, EventEmitter } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { Router } from '@angular/router';
+import { Router} from '@angular/router';
 
 export interface Branch {
   branch_id: number;
@@ -23,7 +23,7 @@ export class BranchSelectComponent {
   @Input() branches: Branch[] = [];
   @Output() branchSelected = new EventEmitter<Branch>();
 
-  constructor(private route: Router) {
+  constructor(public route: Router) {
     this.branches = sessionStorage.getItem('branches') ? JSON.parse(sessionStorage.getItem('branches') || '[]') : [];
   }
 

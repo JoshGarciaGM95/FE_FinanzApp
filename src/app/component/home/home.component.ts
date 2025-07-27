@@ -25,8 +25,7 @@ import { ProductListComponent } from '../product/product-list/product-list.compo
 @Component({
   selector: 'app-home',
   imports: [FormsModule,
-    ReactiveFormsModule, RouterModule, CommonModule,
-    InventoryListComponent, ProductListComponent, SaleComponent, IncomeComponent, ClientComponent, ProviderComponent],
+    ReactiveFormsModule, RouterModule, CommonModule],
   changeDetection: ChangeDetectionStrategy.OnPush,
   templateUrl: './home.component.html',
   styleUrl: './home.component.css'
@@ -42,6 +41,7 @@ export class HomeComponent {
   userId: number | null = null;
   companyId: number | null = null;
   companyName: string | null = null;
+  branchName: string | null = null;
   token: string | null = null;
   plan: PlanData | null = null;
   features: any = { RRHHH: [], Finance: [] };
@@ -57,6 +57,7 @@ export class HomeComponent {
     this.userId = sessionStorage.getItem('userId') ? parseInt(sessionStorage.getItem('userId')!, 10) : null;
     this.isLoggedIn$ = this.authService.isLoggedIn$;
     this.username = sessionStorage.getItem('username');
+    this.branchName = sessionStorage.getItem('branchName');
   }
   
   ngOnInit(): void {
